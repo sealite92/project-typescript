@@ -1,5 +1,6 @@
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext } from 'react';
+import { useFetchPokemon } from './FetchPokemon';
 
 export type Pokemon = {
   id: number;
@@ -10,6 +11,8 @@ export type Pokemon = {
 type PokemonItemsContextType = {
   pokemonList: Pokemon[];
   isLoading: boolean;
+  lastPokemonRef: (node: Element | null) => void;
+  error: string
 }
 
 type PokemonContextTypeProps = {
@@ -19,30 +22,7 @@ type PokemonContextTypeProps = {
   export const PokemonContext = createContext<PokemonItemsContextType |null>(null)
 
 export default function PokemonContextProvider({children}: PokemonContextTypeProps ) {
-    const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
-useEffect(() => {
-    
-const fetchPokemonList = async () => {
-  setIsLoading(true)
-  
-  try {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=12&offset=0")
-    const data = await response.json()
-    console.log(data)
-    const pokemonData = data.results.map((pokemon: Pokemon, index: number) => ({
-      id: index + 1,
-      name: pokemon.name,
-      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
-    }));    
-    setPokemonList(pokemonData)
-  } catch (error) {
-    console.error('Error fetching Pokemon list:', error);
-  }
-}
-fetchPokemonList();
-},[]) 
+   const [pokemonList, isLoading, lastPokemonRef, error] = useFetchPokemon();
 
 
 
@@ -50,6 +30,8 @@ fetchPokemonList();
    <PokemonContext.Provider value={{
     pokemonList, 
     isLoading,
+    lastPokemonRef,
+    error
    }}>
       {children}   
       </PokemonContext.Provider> 
