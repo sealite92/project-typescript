@@ -5,7 +5,7 @@ import Main from "./TodoMain";
 
 export default function TodoHome() {
   return (
-    <div>
+    <div className="bg-gray-600 min-h-screen p-4">
     <TodoContextProvider>
       <Header />
       <Main />
