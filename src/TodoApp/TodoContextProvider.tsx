@@ -1,16 +1,18 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext,} from "react";
 import { v4 as uuidv4 } from "uuid";
-import type { Task } from "./types";
+import type { TodoTaskStatus, TodoTaskType } from "./types";
+import useLocalStorage from "./useLocalStorage";
+
 
 type TodoContextProviderProps = {
   children: React.ReactNode;
 };
 
 type TodoContextType = {
-  tasks: Task[];
-  addTask: (task: Task) => void;
+  tasks: TodoTaskType[];
+  addTask: (task: TodoTaskType) => void;
   handleAddTask: (text: string) => void;
-  updateTaskStatus: (id: string, status: Task["status"]) => void;
+  updateTaskStatus: (id: string, status: TodoTaskType["status"]) => void;
   deleteTask: (id: string) => void;
 };
 
@@ -19,27 +21,10 @@ export const TodoContext = createContext<TodoContextType | null>(null);
 const STORAGE_KEY = "kanban_tasks";
 
 export default function TodoContextProvider({ children }: TodoContextProviderProps) {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    } catch (err) {
-      console.error("Failed to parse tasks from localStorage", err);
-      return [];
-    }
-  });
+ const [tasks, setTasks] = useLocalStorage(STORAGE_KEY, []);
 
-  // ✅ Sync to localStorage every time `tasks` change
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-    } catch (err) {
-      console.error("Failed to save tasks to localStorage", err);
-    }
-  }, [tasks]);
-
-  const addTask = (task: Task) => {
-    const newTask: Task = {
+  const addTask = (task: TodoTaskType) => {
+    const newTask: TodoTaskType = {
       id: uuidv4(),
       text: task.text,
       status: "todo",
@@ -52,7 +37,7 @@ export default function TodoContextProvider({ children }: TodoContextProviderPro
     addTask({ id: "", text, status: "todo" });
   };
 
-  const updateTaskStatus = (id: string, status: Task["status"]) => {
+  const updateTaskStatus = (id: string, status: TodoTaskStatus) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === id ? { ...task, status } : task

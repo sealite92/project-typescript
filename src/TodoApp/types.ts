@@ -1,9 +1,9 @@
-export type TaskStatus = 'todo' | 'in-progress' | 'done';
+export type TodoTaskStatus = 'todo' | 'in-progress' | 'done';
 
-export type Task = {
+export type TodoTaskType = {
   id: string;
     text: string;
-    status: TaskStatus;
+    status: TodoTaskStatus;
    
 }
 

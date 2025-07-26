@@ -1,23 +1,33 @@
 
 import { useTodoContext } from '../TodoContextProvider';
 import { DndContext } from '@dnd-kit/core';
+import type { DragEndEvent } from "@dnd-kit/core";
+
 import TaskColumn from './TaskColumn';
 import Trash from './Trash';
+import type { TodoTaskStatus } from '../types';
 
 export default function Main() {
 
 const {updateTaskStatus, deleteTask} = useTodoContext();
 
- const handleDragEnd = (event: any) => {
+ const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (!over) return;
-
+const activeId =  String(active.id);
+    const overId = String(over.id); 
     if (over.id === "trash") {
-      deleteTask(active.id);
-    } else if (["to-do", "in-progress", "done"].includes(over.id)) {
-      updateTaskStatus(active.id, over.id);
+      deleteTask(activeId);
+    } else if (["todo", "in-progress", "done"].includes(overId)) {
+      updateTaskStatus(activeId, overId as TodoTaskStatus);
     }
+
+    // if (overId === "todo") {
+    //     const task = tasks.find(t => t.id === activeId);
+    //     if (task && task.status !== "todo") {
+    //       return; 
+    //     }
   };
 
   return (
