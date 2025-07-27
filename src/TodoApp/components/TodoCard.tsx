@@ -1,4 +1,4 @@
-import type { TodoTaskType } from "../types";
+import type { TodoTaskType } from "../todoModelTypes";
 import { CardHelpers } from "./TodoCardHelpers";
 
 type TodoCardProps = {

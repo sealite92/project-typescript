@@ -1,5 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
-import type { TodoTaskStatus, } from "../types";
+import type { TodoTaskStatus } from "../todoModelTypes";
+
 
 export function CardHelpers (id: string) {
 

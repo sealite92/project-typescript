@@ -1,7 +1,9 @@
 import { createContext, useContext,} from "react";
 import { v4 as uuidv4 } from "uuid";
-import type { TodoTaskStatus, TodoTaskType } from "./types";
+// import type { TodoTaskStatus, TodoTaskType } from todoModelTypes;
+
 import useLocalStorage from "./useLocalStorage";
+import type { TodoTaskStatus, TodoTaskType } from "./todoModelTypes";
 
 
 type TodoContextProviderProps = {
@@ -12,7 +14,7 @@ type TodoContextType = {
   tasks: TodoTaskType[];
   addTask: (task: TodoTaskType) => void;
   handleAddTask: (text: string) => void;
-  updateTaskStatus: (id: string, status: TodoTaskType["status"]) => void;
+  updateTaskStatus: (id: string, status: TodoTaskStatus) => void;
   deleteTask: (id: string) => void;
 };
 
