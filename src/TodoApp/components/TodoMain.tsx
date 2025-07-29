@@ -1,6 +1,6 @@
 
 import { useTodoContext } from '../TodoContextProvider';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, MouseSensor, TouchSensor, useSensor } from '@dnd-kit/core';
 import type { DragEndEvent } from "@dnd-kit/core";
 
 import TaskColumn from './TaskColumn';
@@ -11,6 +11,22 @@ import { VALID_STATUSES, type TodoTaskStatus } from '../todoModelTypes';
 export default function Main() {
 
 const {updateTaskStatus, deleteTask} = useTodoContext();
+
+
+const mouseSensor = useSensor(MouseSensor, {
+  activationConstraint: {
+    distance: 5,
+  },
+})
+
+const touchSensor = useSensor(TouchSensor, {
+  activationConstraint: {
+    delay: 150,
+    tolerance: 5,
+  },  
+})
+
+const sensors = [mouseSensor, touchSensor];
 
  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -40,7 +56,7 @@ const activeId =  String(active.id);
   };
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <main className='grid grid-cols-1 md:grid-cols-3 gap-4'>
        <TaskColumn title='To Do' status={'todo'} />
        <TaskColumn title="In Progress" status={"in-progress"}/>
