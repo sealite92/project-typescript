@@ -1,6 +1,6 @@
 
 import { useTodoContext } from '../TodoContextProvider';
-import { DndContext, MouseSensor, TouchSensor, useSensor } from '@dnd-kit/core';
+import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import type { DragEndEvent } from "@dnd-kit/core";
 
 import TaskColumn from './TaskColumn';
@@ -26,7 +26,7 @@ const touchSensor = useSensor(TouchSensor, {
   },  
 })
 
-const sensors = [mouseSensor, touchSensor];
+const sensors = useSensors(mouseSensor, touchSensor);
 
  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
