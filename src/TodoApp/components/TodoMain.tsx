@@ -57,7 +57,7 @@ const activeId =  String(active.id);
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-      <main className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+      <main className='grid grid-cols-1 md:grid-cols-3 '>
        <TaskColumn title='To Do' status={'todo'} />
        <TaskColumn title="In Progress" status={"in-progress"}/>
        <TaskColumn title="Done" status={"done"} />
