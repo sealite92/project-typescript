@@ -7,6 +7,7 @@ export default function Home() {
     <div className="flex flex-col items-center mt-8 space-y-4 text-lg">
         <a href="/pokemon" className="text-blue-500 hover:underline">Go to Pokemon App</a>
         <a href="/todo" className="text-blue-500 hover:underline">Go to Drang and drop to-do App</a>
+        <a href="/gitHubSearch" className="text-blue-500 hover:underline">Go to Github search App</a>
     </div>
     </div>
   )
