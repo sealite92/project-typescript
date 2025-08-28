@@ -10,10 +10,12 @@ export interface Repository {
   forks_count: number;
   updated_at: string;
   language: string | null;     
-  owner: {
-    login: string;
+  owner: owner
+}
+
+type owner = {
+ login: string;
     avatar_url: string;
-  };
 }
 
 export type Order = "asc" | "desc"  

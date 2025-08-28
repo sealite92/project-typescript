@@ -1,35 +1,29 @@
-import {  useEffect, useState } from "react"
-import { fetchGitRepo, mockRepositories } from "../fetchGitRepo";
-import GitRepoInput from "./GitRepoInput";
+
+
 import GitRepoList from "./GitRepoList";
+import GitRepoSortControl from "./GitRepoSortControl";
+import GitRepoContextProvider from "./GitRepoContextProvider";
+import SearchFilter from "./SearchFilter";
 
 
 
 
 
 export default function GitSearchHome() {
-  const [searchTerm, setSearchTerm] = useState("")
+  
 
-  const filterRepository = mockRepositories.items
-    .filter(repo => repo.name.includes(searchTerm) || repo.full_name.includes(searchTerm) || (repo.description && repo.description.includes(searchTerm)))
-    .map(repo => ({
-      id: repo.id,
-      full_name: repo.full_name,
-      description: repo.description ?? "",
-      stargazers_count: repo.stargazers_count
-    }));
-
-  useEffect(() => {
-    fetchGitRepo
-  }, []);
   return (
-    <div className="bg-red-100 min-h-screen p-4">
-      This is the GitHub Search App Home Page.
+  <div className="bg-gray-100 min-h-screen p-6 ">
+      <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
+        🔍 GitHub Repository Search
+      </h1>
+<GitRepoContextProvider>
+<SearchFilter/>
+<GitRepoSortControl />
+<GitRepoList />
+</GitRepoContextProvider>
+</div>
 
-      <GitRepoInput searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-      <GitRepoList repos={filterRepository}/>
-      
-    </div>
   )
 }
 

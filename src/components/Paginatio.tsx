@@ -1,5 +1,5 @@
 
-export default function GitPagination() {
+export default function Pagination() {
   return (
     <div>
       
