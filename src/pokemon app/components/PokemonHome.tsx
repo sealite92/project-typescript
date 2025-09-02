@@ -1,6 +1,6 @@
-import PokemonContextProvider, {  } from "./pokemon app/components/PokemonContextProvider";
+import PokemonContextProvider, {  } from "./PokemonContextProvider";
 
-import PokemonList from "./pokemon app/components/PokemonList";
+import PokemonList from "./PokemonList";
 
 export default function PokemonHome() {
   return (
