@@ -10,8 +10,8 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<GitSearchHome />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/gitHubSearch" element={<GitSearchHome />} />
+      <Route path="/" element={<Home />} />
       <Route path="/todo" element={<TodoHome />} />
       <Route path="/pokemon" element={<PokemonHome />} />
     </Routes>

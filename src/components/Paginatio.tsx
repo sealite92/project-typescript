@@ -2,7 +2,7 @@ import { useRepoContext } from "../Github search app/components/GitRepoContextPr
 
 
 export default function Pagination() {
-  const { page, setPage, perPage, setPerPage, totalCount } = useRepoContext();
+  const { page, setPage, perPage, totalCount } = useRepoContext();
 
   const totalPages = Math.ceil(totalCount / perPage);
 
@@ -14,7 +14,7 @@ export default function Pagination() {
     if (page < totalPages) setPage(page + 1);
   };
 
-  // ✅ Generate a small "window" of page numbers
+
   const getPageNumbers = () => {
     const pages: number[] = [];
     const maxVisible = 5;
@@ -34,8 +34,8 @@ export default function Pagination() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-6">
-      {/* Pagination controls */}
+    <div className="flex flex-col items-center gap-4 mt-6  left-1/2 transform -translate-x-1/2 fixed bottom-0">
+   
       <div className="flex gap-2 items-center">
         <button
           onClick={handlePrev}
@@ -45,7 +45,7 @@ export default function Pagination() {
           Prev
         </button>
 
-        {/* Show first page */}
+      
         {page > 3 && (
           <>
             <button
@@ -58,7 +58,7 @@ export default function Pagination() {
           </>
         )}
 
-        {/* Window of pages */}
+      
         {getPageNumbers().map((p) => (
           <button
             key={p}
@@ -73,7 +73,7 @@ export default function Pagination() {
           </button>
         ))}
 
-        {/* Show last page */}
+     
         {page < totalPages - 2 && (
           <>
             {page < totalPages - 3 && <span className="px-2">...</span>}
@@ -96,7 +96,7 @@ export default function Pagination() {
       </div>
 
 
-      {/* Info */}
+      
       <p className="text-sm text-gray-600">
         Page {page} of {totalPages} ({totalCount} results)
       </p>
