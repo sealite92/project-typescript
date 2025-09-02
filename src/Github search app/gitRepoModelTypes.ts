@@ -20,3 +20,4 @@ type owner = {
 
 export type Order = "asc" | "desc"  
 export type Sortby = "best-match" | "stars" | "most-updated"
+export type PerPage = 10 | 20 | 40 | 80 | 160

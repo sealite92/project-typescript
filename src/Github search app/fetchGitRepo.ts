@@ -1,37 +1,55 @@
 
 import { useEffect, useState } from "react";
-import type { Repository } from "./gitRepoModelTypes";
+import type { Order, PerPage, Repository, Sortby } from "./gitRepoModelTypes";
 
-export const usefetchRepo = (searchTerm : string) => {
-const [repo, setRepo] = useState<Repository[]>([])
+export const usefetchRepo = (searchTerm : string, sort:Sortby, order: Order, perPage: PerPage, page: number,) => {
+const [repos, setRepo] = useState<Repository[]>([])
 const [error, setError] = useState<string | null>(null)
 const [isLoading, setIsLoading] = useState(false) 
+ const [totalCount, setTotalCount] = useState<number>(0)
+ const [username, setUsername] = useState("");
 
 
 useEffect(() => {
-  setIsLoading(true)
+  if(!searchTerm) {
+    setRepo([])
+    return;
+  }
+  
 const fetchGitRepo = async () => {
+  setIsLoading(true)
+  
     try {
-        const response = await fetch(`https://api.github.com/search/repositories?q=${searchTerm}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);    
-    }
-
+      const query = `${searchTerm}${username ? `+user:${username}` : ""}`;
+         const response = await fetch(
+          `https://api.github.com/search/repositories?q=${encodeURIComponent(
+            query
+          )}&sort=${sort}&order=${order}&per_page=${perPage}&page=${page}`
+        );
+if (!response.ok) {
+    throw new Error("Network response was not ok");
+}
     const data = await response.json();
-    setRepo(data.items)
+    setRepo(data.items || [])
+    setTotalCount(data.total_count || 0)  
 }
  catch(error) {
        setError((error as Error).message)
 } 
 finally {
     setIsLoading(false)}
+   
 } 
 fetchGitRepo()
-},[searchTerm])
+
+},[ searchTerm, sort , order, perPage, page])
 
 
 
-return {repo, isLoading, error}
+
+
+
+return {repos, isLoading, error, totalCount,  setUsername, username}
 }
 
 
@@ -40,8 +58,8 @@ return {repo, isLoading, error}
 
 
 
-// export const mockRepositories: { total_count: number; items: Repository[] } = {
-//   total_count: 50,
+// export const mockRepositories: { total_cCount: number; items: Repository[] } = {
+//   total_cCount: 50,
 //   items: [
 //     {
 //       id: 1,

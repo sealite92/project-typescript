@@ -17,7 +17,7 @@ type GitRepoItemProps = {
 export default function GitRepoItem({ repo }: { repo: GitRepoItemProps }) {
   return (
     <div
-      className="block bg-white rounded-2xl shadow-md p-4 hover:shadow-xl transition duration-300 grid-cols-1md:grid-cols-2 lg:grid-cols-3"
+      className="block bg-white rounded-2xl shadow-md p-4 hover:shadow-xl transition duration-300 grid-cols-1md:grid-cols-2 lg:grid-cols-3 break-words"
     > 
       <a
        href={repo.html_url}
@@ -30,7 +30,7 @@ export default function GitRepoItem({ repo }: { repo: GitRepoItemProps }) {
           className="w-12 h-12 rounded-full border"
         />
         <div>
-          <h2 className="text-lg md:text-xl font-semibold text-gray-800 hover:underline">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-800 hover:underline inline-block ">
             {repo.full_name}
           </h2>
           <p className="text-sm text-gray-500 hover:underline">@{repo.owner.login}</p>

@@ -4,6 +4,7 @@ import GitRepoList from "./GitRepoList";
 import GitRepoSortControl from "./GitRepoSortControl";
 import GitRepoContextProvider from "./GitRepoContextProvider";
 import SearchFilter from "./SearchFilter";
+import Pagination from "../../components/Paginatio";
 
 
 
@@ -21,6 +22,7 @@ export default function GitSearchHome() {
 <SearchFilter/>
 <GitRepoSortControl />
 <GitRepoList />
+<Pagination />
 </GitRepoContextProvider>
 </div>
 

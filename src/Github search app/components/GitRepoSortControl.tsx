@@ -1,23 +1,30 @@
-import type { Order, Sortby } from "../gitRepoModelTypes";
+import type { Order, PerPage, Sortby } from "../gitRepoModelTypes";
 import { useRepoContext } from "./GitRepoContextProvider";
 
 
 
 export default function GitRepoSortControl() {
 
-  const {sort, setSort, order, setOrder, perPage, setPerPage}= useRepoContext()
+
+  const { sort, setSort, order, setOrder, perPage, setPerPage,} =
+    useRepoContext();
 
   return (
     <div className="flex flex-wrap gap-4 justify-center mb-6">
-      <select value={perPage}  
-        onChange={(e) => setPerPage(Number(e.target.value))}
-      className="p-2 border rounded-lg shadow-sm"
+  
+      <select
+        value={perPage}
+        onChange={(e) => {
+          setPerPage(Number(e.target.value) as PerPage); ;
+          
+        }}
+        className="border p-2 rounded"
       >
-        <option value="perPage">{"items per page :"} 10</option>
-        <option value="perPage">{"items per page :"} 20</option>
-        <option value="perPage">{"items per page :"} 30</option>
-        <option value="perPage">{"items per page :"} 40</option>
-        
+        <option value={10}>10 per page</option>
+        <option value={20}>20 per page</option>
+        <option value={40}>40 per page</option>
+        <option value={80}>80 per page</option>
+        <option value={160}>160 per page</option>
       </select>
 
       <select value={sort}  

@@ -1,5 +1,5 @@
 import {  createContext,  useContext,  useState } from "react"
-import type { Order, Repository, Sortby } from "../gitRepoModelTypes";
+import type { Order, PerPage, Repository, Sortby } from "../gitRepoModelTypes";
 import { usefetchRepo,  } from "../fetchGitRepo";
 
 interface RepoContextProps {
@@ -7,14 +7,16 @@ interface RepoContextProps {
     searchTerm: string;
     sort: Sortby;
     setSort: React.Dispatch<React.SetStateAction<Sortby>>;
-    perPage: number;
-    setPerPage: React.Dispatch<React.SetStateAction<number>>;
-    filterRepository: Repository[];
+    perPage: PerPage;
+    setPerPage: React.Dispatch<React.SetStateAction<PerPage>>;
+    repos: Repository[];
     isLoading?: boolean;
     error?: string | null;
 order: Order;
 setOrder: React.Dispatch<React.SetStateAction<Order>>;
-
+page: number;
+setPage: React.Dispatch<React.SetStateAction<number>>;
+totalCount: number;
 
 }
 
@@ -28,28 +30,20 @@ export default function GitRepoContextProvider({children}: RepoContextProviderPr
 const [searchTerm, setSearchTerm] = useState("")
   const [sort, setSort] = useState<Sortby>("best-match")
   const [order, setOrder] = useState<Order>("desc")
-  const [perPage, setPerPage] = useState<number>(3)
-  const {repo, isLoading, error} = usefetchRepo(searchTerm)
+  const [perPage, setPerPage] = useState<PerPage>(10)
+  const [page, setPage] = useState<number>(1)
 
-  const startIndex = 0
 
-  const filterRepository = repo
-    .filter(repo => repo.name.includes(searchTerm) || repo.full_name.includes(searchTerm) || (repo.description && repo.description.includes(searchTerm))).sort((a,b) => {
-      if(sort === "stars") {
-        return order === "asc" ? a.stargazers_count - b.stargazers_count : b.stargazers_count - a.stargazers_count
-      }
-      if(sort === "most-updated") {
-        return order === "asc" ? new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime() : new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-      }
-      return 0;
-    }).slice(startIndex ,perPage)
+  const {repos, isLoading, error, totalCount} = usefetchRepo(searchTerm, sort, order, perPage, page, )
+
+
    
 
 
   
 
   return (
-    <RepoContext.Provider value={{setSearchTerm, searchTerm, sort, setSort, order, setOrder, perPage, setPerPage, filterRepository, isLoading, error}}>
+    <RepoContext.Provider value={{setSearchTerm, searchTerm, sort, setSort, order, setOrder, perPage, setPerPage, repos, isLoading, error, page, setPage, totalCount}}>
      {children}
     </RepoContext.Provider>
   )
