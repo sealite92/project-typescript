@@ -18,7 +18,7 @@ else if(!isLoading && repos.length === 0 && searchTerm && !error) {
   messaege = `No repo with name ${searchTerm}`
 }
 else if(!isLoading && repos.length === 0 &&  !searchTerm) {
-  messaege = "Search Repositories"
+  messaege = "🔍 Start by searching for your Repositories"
 }
 
 

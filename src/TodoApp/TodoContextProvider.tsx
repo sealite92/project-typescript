@@ -1,75 +1,60 @@
-import { createContext, useContext,} from "react";
-import { v4 as uuidv4 } from "uuid";
-// import type { TodoTaskStatus, TodoTaskType } from todoModelTypes;
 
-import useLocalStorage from "./useLocalStorage";
-import type { TodoTaskStatus, TodoTaskType } from "./todoModelTypes";
+"use client"
 
-
-type TodoContextProviderProps = {
-  children: React.ReactNode;
-};
+import { createContext, useContext, useState, type ReactNode } from "react"
+import type { TodoTaskType, TodoTaskStatus } from "./todoModelTypes"
 
 type TodoContextType = {
-  tasks: TodoTaskType[];
-  addTask: (task: TodoTaskType) => void;
-  handleAddTask: (text: string) => void;
-  updateTaskStatus: (id: string, status: TodoTaskStatus) => void;
-  deleteTask: (id: string) => void;
-};
-
-export const TodoContext = createContext<TodoContextType | null>(null);
-
-const STORAGE_KEY = "kanban_tasks";
-
-export default function TodoContextProvider({ children }: TodoContextProviderProps) {
- const [tasks, setTasks] = useLocalStorage(STORAGE_KEY, []);
-
-  const addTask = (task: TodoTaskType) => {
-    const newTask: TodoTaskType = {
-      id: uuidv4(),
-      text: task.text,
-      status: "todo",
-    };
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-  };
-
-  const handleAddTask = (text: string) => {
-    if (text.trim() === "") return;
-    addTask({ id: "", text, status: "todo" });
-  };
-
-  const updateTaskStatus = (id: string, status: TodoTaskStatus) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, status } : task
-      )
-    );
-  };
-
-  const deleteTask = (id: string) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-  };
-
-  return (
-    <TodoContext.Provider
-      value={{
-        tasks,
-        addTask,
-        handleAddTask,
-        updateTaskStatus,
-        deleteTask,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
+  tasks: TodoTaskType[]
+  handleAddTask: (text: string) => void
+  updateTaskStatus: (id: string, status: TodoTaskStatus) => void
+  deleteTask: (id: string) => void
 }
 
+const TodoContext = createContext<TodoContextType | undefined>(undefined)
+
 export function useTodoContext() {
-  const context = useContext(TodoContext);
-  if (!context) {
-    throw new Error("useTodoContext must be used within a TodoContextProvider");
+  const context = useContext(TodoContext)
+  if (context === undefined) {
+    throw new Error("useTodoContext must be used within a TodoContextProvider")
   }
-  return context;
+  return context
+}
+
+type TodoContextProviderProps = {
+  children: ReactNode
+}
+
+export default function TodoContextProvider({ children }: TodoContextProviderProps) {
+  const [tasks, setTasks] = useState<TodoTaskType[]>([
+    { id: "1", text: "Design new landing page", status: "todo" },
+    { id: "2", text: "Implement user authentication", status: "in-progress" },
+    { id: "3", text: "Set up database schema", status: "done" },
+  ])
+
+  const handleAddTask = (text: string) => {
+    const newTask: TodoTaskType = {
+      id: Date.now().toString(),
+      text: text.trim(),
+      status: "todo",
+    }
+    setTasks((prev) => [...prev, newTask])
+  }
+
+  const updateTaskStatus = (id: string, status: TodoTaskStatus) => {
+    setTasks((prev) => prev.map((task) => (task.id === id ? { ...task, status } : task)))
+  }
+
+  const deleteTask = (id: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id))
+  }
+
+  const value: TodoContextType = {
+    tasks,
+    handleAddTask,
+    updateTaskStatus,
+    deleteTask,
+  }
+
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
 }
