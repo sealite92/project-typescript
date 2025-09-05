@@ -9,11 +9,11 @@ import { usefetchRepo } from "../fetchGitRepo"
 interface RepoContextProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>
   searchTerm: string
-  sort: Sortby
-  setSort: React.Dispatch<React.SetStateAction<Sortby>>
+  sortBy: Sortby
+  setSortBy: React.Dispatch<React.SetStateAction<Sortby>>
   perPage: PerPage
   setPerPage: React.Dispatch<React.SetStateAction<PerPage>>
-  repos: Repository[]
+  repository: Repository[]
   isLoading?: boolean
   error?: string | null
   order: Order
@@ -31,25 +31,25 @@ export const RepoContext = createContext<RepoContextProps | null>(null)
 
 export default function GitRepoContextProvider({ children }: RepoContextProviderProps) {
   const [searchTerm, setSearchTerm] = useState("")
-  const [sort, setSort] = useState<Sortby>("best-match")
+  const [sortBy, setSortBy] = useState<Sortby>("best-match")
   const [order, setOrder] = useState<Order>("desc")
   const [perPage, setPerPage] = useState<PerPage>(10)
   const [page, setPage] = useState<number>(1)
 
-  const { repos, isLoading, error, totalCount } = usefetchRepo(searchTerm, sort, order, perPage, page)
+  const { repository, isLoading, error, totalCount } = usefetchRepo(searchTerm, sortBy, order, perPage, page)
 
   return (
     <RepoContext.Provider
       value={{
         setSearchTerm,
         searchTerm,
-        sort,
-        setSort,
+        sortBy,
+        setSortBy,
         order,
         setOrder,
         perPage,
         setPerPage,
-        repos,
+        repository,
         isLoading,
         error,
         page,

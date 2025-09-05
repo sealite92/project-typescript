@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react"
 import type { Order, PerPage, Repository, Sortby } from "./types/gitRepoModelTypes"
+import { mapToRepository } from "./Helpers/helper"
 
 export const usefetchRepo = (searchTerm: string, sort: Sortby, order: Order, perPage: PerPage, page: number) => {
-  const [repos, setRepo] = useState<Repository[]>([])
+  const [repository, setRepository] = useState<Repository[]>([])
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [totalCount, setTotalCount] = useState<number>(0)
@@ -36,8 +37,11 @@ export const usefetchRepo = (searchTerm: string, sort: Sortby, order: Order, per
           throw new Error("Network response was not ok")
         }
         const data = await response.json()
-        setRepo(data.items || [])
-        setTotalCount(data.total_count || 0)
+        if(data && data.items) {
+          const repositories = mapToRepository(data.items)
+          setRepository(repositories)
+          setTotalCount(data.total_count || 0)
+        }
       } catch (error) {
         setError((error as Error).message)
       } finally {
@@ -48,5 +52,5 @@ export const usefetchRepo = (searchTerm: string, sort: Sortby, order: Order, per
     fetchGitRepo()
   }, [searchTerm, sort, order, perPage, page])
 
-  return { repos, isLoading, error, totalCount, setUsername, username }
+  return { repository, isLoading, error, totalCount, setUsername, username }
 }

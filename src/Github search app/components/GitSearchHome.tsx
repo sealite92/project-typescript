@@ -9,7 +9,8 @@ export default function GitSearchHome() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
+  
+       
         <div className="text-center mb-8 sm:mb-12">
           <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
             <Github className="w-6 h-6 sm:w-8 sm:h-8 text-blue-700" />
