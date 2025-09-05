@@ -1,59 +1,72 @@
-
-type GitRepoItemProps = {
- 
-    id: number;
-    full_name: string;
-    description: string | null;
-    stargazers_count: number;
-    updated_at: string;
-    html_url: string;
-    language: string | null;
-    owner: {
-      login: string;
-      avatar_url: string;}
-  };
+import { Star, Calendar, Code } from "lucide-react"
+import { Repository } from "../types/gitRepoModelTypes"
 
 
-export default function GitRepoItem({ repo }: { repo: GitRepoItemProps }) {
+export default function GitRepoItem({ repository }: { repository: Repository }) {
+  const formatStars = (count: number) => {
+
+    if (count > 1000) {
+      return (count / 1000).toFixed(1) + "k"
+    }
+    return count.toString()
+  }
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+  }
+
   return (
-    <div
-      className="block bg-white rounded-2xl shadow-md p-4 hover:shadow-xl transition duration-300 grid-cols-1md:grid-cols-2 lg:grid-cols-3"
-    > 
-      <a
-       href={repo.html_url}
+    <a
+      href={repository.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-4 ">
-        <img
-          src={repo.owner.avatar_url}
-          alt={repo.owner.login}
-          className="w-12 h-12 rounded-full border"
-        />
-        <div>
-          <h2 className="text-lg md:text-xl font-semibold text-gray-800 hover:underline block break-words line-clamp-1 truncate">
-            {repo.full_name}
-          </h2>
-          <p className="text-sm text-gray-500 hover:underline">@{repo.owner.login}</p>
-        </div>
-      </a>
-
+      className="block bg-white rounded-xl sm:rounded-2xl border border-blue-100 p-4 sm:p-6 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group"
+    >
     
-      <p className="mt-3 text-gray-700 text-sm md:text-base break-words whitespace-normal line-clamp-3">
-        {repo.description || "No description available."}
+      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+        <img
+          src={repository.owner.avatarUrl || "/placeholder.svg"}
+          alt={repository.owner.login}
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-blue-100 flex-shrink-0"
+        />
+        <div className="min-w-0 flex-1">
+          <h3 className="text-base sm:text-lg font-semibold text-blue-900 group-hover:text-blue-600 transition-colors duration-200 truncate">
+            {repository.fullName}
+          </h3>
+          <p className="text-xs sm:text-sm text-blue-500 mt-1">@{repository.owner.login}</p>
+        </div>
+      </div>
+
+      
+      <p className="text-blue-600 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-2">
+        {repository.description || "No description available."}
       </p>
 
-    
-      <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-gray-600">
-       <span>
-  ⭐
-  {repo.stargazers_count > 1000
-    ? (repo.stargazers_count / 1000).toFixed(1) + "k"
-    : repo.stargazers_count.toString()}
-</span>
+      {/* Stats */}
+      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-blue-500">
+        <div className="flex items-center gap-1">
+          <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5"  />
+          <span className="font-medium">{formatStars(repository.stargazersCount)}</span>
+        </div>
 
-        {repo.language && <span>📝 {repo.language}</span>}
-        <span>📅 Updated {new Date(repo.updated_at).toLocaleDateString()}</span>
+        {repository.languages && (
+          <div className="flex items-center gap-1">
+            <Code className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <span className="truncate max-w-20 sm:max-w-none">{repository.languages}</span>
+          </div>
+        )}
+
+        <div className="flex items-center gap-1">
+          <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+          <span className="hidden sm:inline">{formatDate(repository.updatedAt)}</span>
+          <span className="sm:hidden">{formatDate(repository.updatedAt).replace(", ", " ")}</span>
+        </div>
       </div>
-    </div>
-  );
+    </a>
+  )
 }
