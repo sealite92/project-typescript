@@ -4,7 +4,7 @@ import type { Order, PerPage, Sortby } from "../types/gitRepoModelTypes"
 import { useRepoContext } from "./GitRepoContextProvider"
 
 export default function GitRepoSortControl() {
-  const { sort, setSort, order, setOrder, perPage, setPerPage } = useRepoContext()
+  const { sortBy, setSortBy, order, setOrder, perPage, setPerPage } = useRepoContext()
 
   return (
     <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center mb-6 sm:mb-8 px-4">
@@ -21,8 +21,8 @@ export default function GitRepoSortControl() {
       </select>
 
       <select
-        value={sort}
-        onChange={(e) => setSort(e.target.value as Sortby)}
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value as Sortby)}
         className="w-full sm:w-auto px-3 sm:px-4 py-2.5 sm:py-2 bg-white border border-blue-200 rounded-lg sm:rounded-xl text-sm font-medium text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 cursor-pointer hover:border-blue-300"
       >
         <option value="best-match">Best Match</option>
