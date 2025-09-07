@@ -23,42 +23,42 @@ export default function GitRepoItem({ repository }: { repository: Repository }) 
       href={repository.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-blue-100 p-3 sm:p-4 lg:p-6 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group w-full"
+      className="block bg-gray-900 rounded-lg sm:rounded-xl lg:rounded-2xl border border-gray-700 p-4 sm:p-5 lg:p-6 hover:shadow-lg hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group w-full"
     >
-      <div className="flex items-start gap-2 sm:gap-3 lg:gap-4 mb-2 sm:mb-3 lg:mb-4">
+      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
         <img
           src={repository.owner.avatarUrl || "/placeholder.svg"}
           alt={repository.owner.login}
-          className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-2 border-blue-100 flex-shrink-0"
+          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-2 border-gray-600 flex-shrink-0"
         />
-        <div className="flex-1 overflow-hidden">
-          <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-blue-900 group-hover:text-blue-600 transition-colors duration-200 break-words leading-tight">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white group-hover:text-blue-400 transition-colors duration-200 break-words leading-tight mb-1">
             {repository.fullName}
           </h3>
-          <p className="text-xs sm:text-sm text-blue-500 mt-0.5 sm:mt-1">@{repository.owner.login}</p>
+          <p className="text-sm sm:text-base text-gray-400">@{repository.owner.login}</p>
         </div>
       </div>
 
-      <p className="text-blue-600 text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3 lg:mb-4 line-clamp-3 sm:line-clamp-2 break-words">
+      <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 sm:mb-5 line-clamp-3 break-words">
         {repository.description || "No description available."}
       </p>
 
-      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 lg:gap-4 text-xs text-blue-500">
-        <div className="flex items-center gap-1 flex-shrink-0">
-          <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 sm:gap-4 text-sm text-gray-400">
+        <div className="flex items-center gap-1.5">
+          <Star className="w-4 h-4" />
           <span className="font-medium">{formatStars(repository.stargazersCount)}</span>
         </div>
 
         {repository.languages && (
-          <div className="flex items-center gap-1 min-w-0">
-            <Code className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+          <div className="flex items-center gap-1.5 min-w-0">
+            <Code className="w-4 h-4 flex-shrink-0" />
             <span className="break-words">{repository.languages}</span>
           </div>
         )}
 
-        <div className="flex items-center gap-1 flex-shrink-0">
-          <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          <span className="text-xs">{formatDate(repository.updatedAt)}</span>
+        <div className="flex items-center gap-1.5">
+          <Calendar className="w-4 h-4" />
+          <span>{formatDate(repository.updatedAt)}</span>
         </div>
       </div>
     </a>

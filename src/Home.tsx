@@ -14,30 +14,31 @@ function App() {
       description:
         "Interactive Pokemon explorer built with TypeScript, featuring search and detailed Pokemon information.",
       href: "/pokemon",
-      tags: ["TypeScript", "React", "API Integration"],
+      tags: ["TypeScript", "React", "Tailwind CSS", "API Integration", "Intersection Observer", "HTML5", "JavaScript"],
       icon: "🎮",
     },
     {
       title: "Drag & Drop Todo",
       description: "Modern task management app with intuitive drag-and-drop functionality and real-time updates.",
       href: "/todo",
-      tags: ["TypeScript", "Drag & Drop", "State Management"],
+      tags: ["TypeScript", "React", "Tailwind CSS", "Drag & Drop", "State Management", "HTML5"],
       icon: "✅",
     },
     {
       title: "GitHub Search",
       description: "Powerful GitHub repository search tool with advanced filtering and user-friendly interface.",
       href: "/gitHubSearch",
-      tags: ["TypeScript", "GitHub API", "Search"],
+      tags: ["TypeScript", "React", "Tailwind CSS", "GitHub API", "Search", "HTML5", "JavaScript"],
       icon: "🔍",
     },
   ]
 
   const skills = [
     { name: "HTML5", level: "Advanced", icon: <Code className="w-5 h-5" /> },
-    { name: "CSS", level: "Advanced", icon: <Palette className="w-5 h-5" /> },
+    { name: "Tailwind CSS", level: "Advanced", icon: <Palette className="w-5 h-5" /> },
     { name: "JavaScript", level: "Advanced", icon: <Code className="w-5 h-5" /> },
     { name: "TypeScript", level: "Advanced", icon: <Code className="w-5 h-5" /> },
+    { name: "React", level: "Advanced", icon: <Code className="w-5 h-5" /> },
     { name: "Angular", level: "Beginner", icon: <Database className="w-5 h-5" /> },
   ]
 
@@ -51,7 +52,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      {/* Header */}
+    
       <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
@@ -121,7 +122,7 @@ function App() {
                   size="sm"
                   className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent w-fit"
                   onClick={() => {
-                    window.open("https://github.https://github.com/sealite92", "_blank")
+                    window.open("https://github.com/sealite92", "_blank")
                     setIsMobileMenuOpen(false)
                   }}
                 >
@@ -134,7 +135,7 @@ function App() {
         </div>
       </header>
 
-      {/* Hero Section */}
+     
       <section className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="space-y-6">
@@ -145,7 +146,7 @@ function App() {
               Hi, I'm <span className="text-purple-400">Nnalue Fabian</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto text-pretty">
-              A passionate frontend developer with experience in HTML5, CSS, JavaScript, TypeScript, and Angular.
+              A passionate frontend developer with experience in HTML5, CSS, JavaScript, TypeScript, React, and Angular.
               Explore my collection of modern web applications showcasing clean code and intuitive design.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -171,6 +172,67 @@ function App() {
         </div>
       </section>
 
+      <section id="about" className="py-12 md:py-20 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">About Me</h2>
+            <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+              Get to know more about my journey as a frontend developer and my passion for creating exceptional web
+              experiences.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                I'm a dedicated frontend developer with a passion for creating intuitive and engaging web applications.
+                My journey in web development started with curiosity about how websites work, and has evolved into a
+                deep appreciation for clean code, user experience, and modern development practices.
+              </p>
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                I specialize in building responsive, accessible, and performant web applications using modern
+                technologies like React, TypeScript, and CSS. I believe in writing maintainable code and creating
+                seamless user experiences that make a difference.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Badge variant="outline" className="border-purple-500 text-purple-400">
+                  Problem Solver
+                </Badge>
+                <Badge variant="outline" className="border-purple-500 text-purple-400">
+                  Detail Oriented
+                </Badge>
+                <Badge variant="outline" className="border-purple-500 text-purple-400">
+                  Team Player
+                </Badge>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 rounded-lg p-6 md:p-8 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">Quick Facts</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400">Location</span>
+                  <span className="text-white">Nigeria</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400">Experience</span>
+                  <span className="text-white">2+ Years</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400">Focus</span>
+                  <span className="text-white">Frontend Development</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400">Availability</span>
+                  <span className="text-green-400">Open to opportunities</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+   
       <section id="skills" className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
@@ -206,7 +268,7 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
+    
       <section id="projects" className="py-12 md:py-20 px-4 bg-gray-800/50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 md:mb-16">
@@ -256,7 +318,7 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
+    
       <footer className="py-8 md:py-12 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="space-y-4">
@@ -264,10 +326,10 @@ function App() {
               Built by Nnalue Fabian with TypeScript, React.js, and Tailwind CSS
             </p>
             <div className="flex items-center justify-center gap-4 md:gap-6">
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
+              <a onClick={() => window.open("https://github.com", "_blank")} className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
                 GitHub
               </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
+              <a onClick={() => window.open("https://www.linkedin.com/in/fabian-nnalue/", "_blank")} className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
                 LinkedIn
               </a>
               <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
