@@ -43,10 +43,10 @@ export default function Main() {
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-      <main className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <TaskColumn title="To Do" status={"todo"} />
-        <TaskColumn title="In Progress" status={"in-progress"} />
-        <TaskColumn title="Done" status={"done"} />
+      <main className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 ">
+        <TaskColumn title="All" status={"todo"} />
+        <TaskColumn title="Active" status={"in-progress"} />
+        <TaskColumn title="Completed" status={"done"} />
       </main>
       <Trash />
     </DndContext>

@@ -5,7 +5,8 @@ import type React from "react"
 import { useState } from "react"
 import { useTodoContext } from "../TodoContextProvider"
 import { useNavigate } from "react-router-dom"
-import { Plus, ArrowLeft } from "lucide-react"
+import { ArrowLeft, Clock } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export default function Header() {
   const [text, setText] = useState("")
@@ -25,36 +26,34 @@ export default function Header() {
   }
 
   return (
-    <div className="mb-8">
-      <button
-        onClick={() => navigate("/")}
-        className="mb-6 inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        <span className="text-sm font-medium">Back</span>
-      </button>
+    <div className="mb-8 relative z-20">
+       <div className="mb-6 sm:mb-8 absolute top-0 left-0 sm:top-0 sm:left-4">
+         <Button
+  variant="ghost"
+  className="text-white hover:text-white hover:bg-gray-800 border border-white hover:border-gray-600 transition-all duration-200 text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2"
+  onClick={() => window.history.back()}
+>
+  <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+  <span className="hidden sm:inline">Back to Portfolio</span>
+</Button>
 
+        </div>
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-2 text-balance">Task Board</h1>
-        <p className="text-slate-600 dark:text-slate-400 text-lg">Organize your work with drag and drop</p>
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-white tracking-[0.3em]">TODO</h1>
+          <Clock className="w-8 h-8 text-white" />
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-        <div className="flex gap-3">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-8">
+        <div className="relative">
           <input
             value={text}
             onChange={handleInputChange}
             type="text"
-            className="flex-1 px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-500 dark:placeholder-slate-400 text-slate-900 dark:text-slate-100"
-            placeholder="Add a new task..."
+            placeholder="Create a new todo..."
+            className="w-full px-6 py-4 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 text-lg shadow-lg"
           />
-          <button
-            type="submit"
-            className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white font-medium rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors inline-flex items-center gap-2 shadow-sm"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Add</span>
-          </button>
         </div>
       </form>
     </div>

@@ -11,13 +11,13 @@ export default function TodoCard({ task }: TodoCardProps) {
   const getCardStyles = (status: string) => {
     switch (status) {
       case "todo":
-        return "border-l-blue-500 hover:border-l-blue-600 dark:border-l-blue-400 dark:hover:border-l-blue-300"
+        return "border-l-blue-500 hover:border-l-blue-600"
       case "in-progress":
-        return "border-l-amber-500 hover:border-l-amber-600 dark:border-l-amber-400 dark:hover:border-l-amber-300"
+        return "border-l-amber-500 hover:border-l-amber-600"
       case "done":
-        return "border-l-emerald-500 hover:border-l-emerald-600 dark:border-l-emerald-400 dark:hover:border-l-emerald-300"
+        return "border-l-emerald-500 hover:border-l-emerald-600"
       default:
-        return "border-l-slate-300 dark:border-l-slate-600"
+        return "border-l-gray-300"
     }
   }
 
@@ -28,15 +28,13 @@ export default function TodoCard({ task }: TodoCardProps) {
       {...attributes}
       style={style}
       className={`
-        p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 border-l-4 
+        p-4 bg-white rounded-xl shadow-sm border border-gray-200 border-l-4 
         ${getCardStyles(task.status)}
         hover:shadow-md transition-all duration-200 cursor-grab active:cursor-grabbing
         ${task.status === "done" ? "opacity-75" : ""}
       `}
     >
-      <p
-        className={`text-slate-900 dark:text-slate-100 leading-relaxed ${task.status === "done" ? "line-through text-slate-500 dark:text-slate-400" : ""}`}
-      >
+      <p className={`text-gray-900 leading-relaxed ${task.status === "done" ? "line-through text-gray-500" : ""}`}>
         {task.text}
       </p>
     </div>

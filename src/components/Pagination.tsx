@@ -42,7 +42,7 @@ export default function Pagination() {
         <button
           onClick={handlePrev}
           disabled={page === 1}
-          className="flex items-center gap-1 px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-blue-200 bg-white hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="flex items-center gap-1 px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
         >
           <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
           <span className="hidden sm:inline">Prev</span>
@@ -52,11 +52,11 @@ export default function Pagination() {
           <>
             <button
               onClick={() => setPage(1)}
-              className="px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-blue-200 bg-white hover:bg-blue-50 transition-colors"
+              className="px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-600 transition-all duration-200"
             >
               1
             </button>
-            {page > 4 && <span className="px-1 sm:px-2 text-blue-400 text-sm">...</span>}
+            {page > 4 && <span className="px-1 sm:px-2 text-gray-500 text-sm">...</span>}
           </>
         )}
 
@@ -64,10 +64,10 @@ export default function Pagination() {
           <button
             key={p}
             onClick={() => setPage(p)}
-            className={`px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border transition-colors ${
+            className={`px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border transition-all duration-200 ${
               page === p
-                ? "bg-blue-600 text-white border-blue-600 shadow-sm"
-                : "border-blue-200 bg-white hover:bg-blue-50"
+                ? "bg-blue-600 text-white border-blue-600 shadow-sm hover:bg-blue-700"
+                : "border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-600"
             }`}
           >
             {p}
@@ -76,10 +76,10 @@ export default function Pagination() {
 
         {page < totalPages - 2 && (
           <>
-            {page < totalPages - 3 && <span className="px-1 sm:px-2 text-blue-400 text-sm">...</span>}
+            {page < totalPages - 3 && <span className="px-1 sm:px-2 text-gray-500 text-sm">...</span>}
             <button
               onClick={() => setPage(totalPages)}
-              className="px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-blue-200 bg-white hover:bg-blue-50 transition-colors"
+              className="px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-600 transition-all duration-200"
             >
               {totalPages}
             </button>
@@ -89,14 +89,14 @@ export default function Pagination() {
         <button
           onClick={handleNext}
           disabled={page === totalPages}
-          className="flex items-center gap-1 px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-blue-200 bg-white hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="flex items-center gap-1 px-2 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
         >
           <span className="hidden sm:inline">Next</span>
           <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
         </button>
       </div>
 
-      <p className="text-xs sm:text-sm text-blue-500 text-center">
+      <p className="text-xs sm:text-sm text-gray-400 text-center">
         Page {page} of {totalPages} • {totalCount.toLocaleString()} repositories
       </p>
     </div>
