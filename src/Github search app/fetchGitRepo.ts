@@ -41,6 +41,13 @@ export const usefetchRepo = (searchTerm: string, sort: Sortby, order: Order, per
           const repositories = mapToRepository(data.items)
           setRepository(repositories)
           setTotalCount(data.total_count || 0)
+const sortedRepos = [...repositories].sort((a, b) => {
+  if (sort === "stars") {
+    return b.stargazers_count - a.stargazers_count;
+  } 
+  return 0;
+});
+
         }
       } catch (error) {
         setError((error as Error).message)
