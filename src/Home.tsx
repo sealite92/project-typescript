@@ -31,15 +31,29 @@ function App() {
       tags: ["TypeScript", "React", "Tailwind CSS", "GitHub API", "Search", "HTML5", "JavaScript"],
       icon: "🔍",
     },
+    {
+      title: "Menu swift",
+      description: "A group project from the HNG12 program. A modern restaurant menu app that allows you to generate a Qr code for your customers to make their orders in real time.",
+    externalUrl : "https://visit.menu/",
+      tags: ["TypeScript", "React", "Tailwind CSS", "GitHub API", "Search", "HTML5", "JavaScript", "Zustand for state management"],
+      icon: "🍽️",
+    },
+    {
+      title: "Retask App",
+      description: "A pure Html and CSS task management app with seamless navigation ",
+    externalUrl : "https://retaskaapp.netlify.app/",
+      tags: ["HTML", "CSS",  "HTML5", "flexbox", "css grid", "Sass", "Scss" ],
+      icon: "⏰",
+    },
   ]
 
   const skills = [
-    { name: "HTML5", level: "Advanced", icon: <Code className="w-5 h-5" /> },
-    { name: "Tailwind CSS", level: "Advanced", icon: <Palette className="w-5 h-5" /> },
-    { name: "JavaScript", level: "Advanced", icon: <Code className="w-5 h-5" /> },
-    { name: "TypeScript", level: "Advanced", icon: <Code className="w-5 h-5" /> },
-    { name: "React", level: "Advanced", icon: <Code className="w-5 h-5" /> },
-    { name: "Angular", level: "Beginner", icon: <Database className="w-5 h-5" /> },
+    { name: "HTML5", level: "", icon: <Code className="w-5 h-5" /> },
+    { name: "Tailwind CSS", level: "", icon: <Palette className="w-5 h-5" /> },
+    { name: "JavaScript", level: "", icon: <Code className="w-5 h-5" /> },
+    { name: "TypeScript", level: "", icon: <Code className="w-5 h-5" /> },
+    { name: "React", level: "", icon: <Code className="w-5 h-5" /> },
+    { name: "Angular", level: "", icon: <Database className="w-5 h-5" /> },
   ]
 
   const scrollToSection = (sectionId: string) => {
@@ -53,10 +67,13 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900">
     
-      <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+      <header id="header" className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
-            <div className="text-xl font-bold text-purple-400">Nnalue Fabian</div>
+            <a className="text-xl font-bold text-purple-400 cursor-pointer" 
+
+           href="#"
+            >Nnalue Fabian</a>
 
             <div className="hidden md:flex items-center gap-6">
               <button
@@ -251,7 +268,7 @@ function App() {
                     <div className="text-purple-400">{skill.icon}</div>
                     <h3 className="font-semibold text-white">{skill.name}</h3>
                   </div>
-                  <Badge
+                  {/* <Badge
                     variant="outline"
                     className={`text-xs ${
                       skill.level === "Advanced"
@@ -260,7 +277,7 @@ function App() {
                     }`}
                   >
                     {skill.level}
-                  </Badge>
+                  </Badge> */}
                 </CardContent>
               </Card>
             ))}
@@ -305,11 +322,16 @@ function App() {
                     ))}
                   </div>
                   <Button
+                  asChild
                     className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors"
-                    onClick={() => (window.location.href = project.href)}
+                    // onClick={() => (window.location.href = project.href)}
                   >
+                    <a href={project.externalUrl || project.href} 
+                    target={project.externalUrl ? "_blank" : "_self"}
+                     rel={project.externalUrl ? "noopener noreferrer" : undefined} >
                     Explore Project
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
