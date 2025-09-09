@@ -18,12 +18,17 @@ export default function GitRepoItem({ repository }: { repository: Repository }) 
     })
   }
 
+const formatName = (name: string) => {
+  return name.length > 25 ? name.slice(0, 22) + "..." : name
+}
+
+
   return (
     <a
       href={repository.htmlUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-gray-900 rounded-lg sm:rounded-xl lg:rounded-2xl border border-gray-700 p-4 sm:p-5 lg:p-6 hover:shadow-lg hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group w-full"
+      className=" bg-gray-900 rounded-lg sm:rounded-xl lg:rounded-2xl border border-gray-700 p-4 sm:p-5 lg:p-6 hover:shadow-lg hover:border-gray-600 hover:bg-gray-800 transition-all duration-300 group w-full h-full flex justify-between flex-col"
     >
       <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
         <img
@@ -33,7 +38,7 @@ export default function GitRepoItem({ repository }: { repository: Repository }) 
         />
         <div className="flex-1 min-w-0">
           <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white group-hover:text-blue-400 transition-colors duration-200 break-words leading-tight mb-1">
-            {repository.fullName}
+            {formatName(repository.fullName)}
           </h3>
           <p className="text-sm sm:text-base text-gray-400">@{repository.owner.login}</p>
         </div>
