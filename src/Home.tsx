@@ -300,7 +300,7 @@ function App() {
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-gray-800 border-gray-700"
+                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-gray-800 border-gray-700 flex justify-between"
               >
                 <CardHeader className="p-4 md:p-6">
                   <div className="flex items-center gap-3 mb-2">
