@@ -8,14 +8,7 @@ import TodoMain from "./TodoMain"
 import Header from "./Header"
 
 export default function TodoHome() {
-  const [newTodo, setNewTodo] = useState("")
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (newTodo.trim()) {
-      setNewTodo("")
-    }
-  }
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden lg:p-20">
