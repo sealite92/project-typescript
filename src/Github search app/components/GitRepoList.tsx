@@ -28,7 +28,7 @@ export default function GitRepoList() {
         {repository.map((repository) => (
           <li
             key={repository.id}
-            className="bg-gray-800 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors duration-200"
+            className="bg-gray-800  rounded-lg sm:rounded-xl lg:rounded-2xl border border-gray-700 hover:border-gray-600 transition-colors duration-200"
           >
             <GitRepoItem repository={repository} />
           </li>
