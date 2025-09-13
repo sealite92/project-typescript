@@ -4,7 +4,7 @@ import { useRepoContext } from "../Github search app/components/GitRepoContextPr
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function Pagination() {
-  const { page, setPage, perPage, totalCount } = useRepoContext()
+  const { page, setPage, perPage, totalCount, repository } = useRepoContext()
 
   const totalPages = Math.ceil(totalCount / perPage)
 
@@ -38,6 +38,7 @@ export default function Pagination() {
 
   return (
     <div className="flex flex-col items-center gap-3 sm:gap-4 mt-6 sm:mt-8 mb-4 sm:mb-6 px-4">
+      
       <div className="flex flex-wrap gap-1 sm:gap-2 items-center justify-center">
         <button
           onClick={handlePrev}

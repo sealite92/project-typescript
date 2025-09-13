@@ -12,13 +12,15 @@ export default function PokemonHome() {
        <div className="absolute inset-0 bg-[url('/abstract-pokemon-battle-arena-background.jpg')] bg-cover bg-center opacity-5"></div>
 
           <div className="relative z-10 container mx-auto px-4 pt-6">
-            <Link
-              to="/"
+            
+            <button
+             onClick={() => window.history.back()}
+             
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#3cbcb2]/10 border border-[#3cbcb2]/30 text-[#3cbcb2] hover:bg-[#3cbcb2]/20 transition-all duration-200 backdrop-blur-sm"
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="text-sm font-medium">Back to Portfolio</span>
-            </Link>
+            </button>
           </div>
 
           <div className="relative container mx-auto px-4 py-16 text-center">
