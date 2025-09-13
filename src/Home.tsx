@@ -78,27 +78,27 @@ function App() {
             <div className="hidden md:flex items-center gap-6">
               <button
                 onClick={() => scrollToSection("projects")}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
                 Projects
               </button>
               <button
                 onClick={() => scrollToSection("about")}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
                 About
               </button>
               <button
                 onClick={() => scrollToSection("skills")}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
                 Skills
               </button>
               <Button
                 variant="outline"
                 size="sm"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent"
-                onClick={() => window.open("https://github.com", "_blank")}
+                className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent cursor-pointer"
+                onClick={() => window.open("https://github.com/sealite92", "_blank")}
               >
                 <Github className="w-4 h-4 mr-2" />
                 GitHub
@@ -169,7 +169,7 @@ function App() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Button
                 size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white w-full sm:w-auto"
+                className="bg-purple-600 hover:bg-purple-700 text-white w-full sm:w-auto cursor-pointer"
                 onClick={() => scrollToSection("projects")}
               >
                 View Projects
@@ -178,7 +178,7 @@ function App() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent w-full sm:w-auto"
+                className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white bg-transparent w-full sm:w-auto cursor-pointer"
                 onClick={() => scrollToSection("skills")}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
@@ -348,13 +348,13 @@ function App() {
               Built by Nnalue Fabian with TypeScript, React.js, and Tailwind CSS
             </p>
             <div className="flex items-center justify-center gap-4 md:gap-6">
-              <a onClick={() => window.open("https://github.com", "_blank")} className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
+              <a onClick={() => window.open("https://github.com/sealite92", "_blank")} className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base cursor-pointer">
                 GitHub
               </a>
-              <a onClick={() => window.open("https://www.linkedin.com/in/fabian-nnalue/", "_blank")} className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
+              <a onClick={() => window.open("https://www.linkedin.com/in/fabian-nnalue/", "_blank")} className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base cursor-pointer">
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base">
+              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors text-sm md:text-base cursor-pointer">
                 Twitter
               </a>
             </div>
