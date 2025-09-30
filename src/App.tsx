@@ -11,8 +11,8 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<Form />} />
-      {/* <Route path="/" element={<Home />} /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="/form" element={<Form />} />
       <Route path="/gitHubSearch" element={<GitSearchHome />} />
       <Route path="/todo" element={<TodoHome />} />
       <Route path="/pokemon" element={<PokemonHome />} />

@@ -97,6 +97,7 @@ const handleFormSubmit: SubmitHandler<FormFields> = (data) => {
     <label htmlFor="">Description</label>
     <textarea className="p-2 border-2 border-gray-500 rounded-md " rows={4} placeholder="Describe your role"
     {...register("description")}/>
+    {errors.description && <div className="text-red-500">{errors.description.message}</div>}
 
    <div className="bg-white flex justify-between sticky barder-1 border-gray-500 z-50 bottom-0 p-4 w-full"><div></div><button  className='text-center rounded-md  w-20  bg-blue-400 hover:bg-blue-500 text-white font-semibold' type="submit">Save</button></div>
    </form>

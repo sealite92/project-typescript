@@ -6,7 +6,7 @@ export const sampleJobExperiences: Experience[] = [
     employmentType: "Full-time",
     companyName: "TechCorp Inc.",
     isCurrentlyWorkingHere: true,
-    startDate: "june, 2022",
+    startDate: "June, 2022",
     location: "New York, NY",
     locationType: "Remote",
     description: "Working on developing scalable web applications."

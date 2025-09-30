@@ -45,6 +45,13 @@ function App() {
       tags: ["HTML", "CSS",  "HTML5", "flexbox", "css grid", "Sass", "Scss" ],
       icon: "⏰",
     },
+    {
+      title: "Linkdin Form",
+      description: "A Linkkdin type add experience form built with React, React Hook form, Zod for form validation, Typescript and Tailwind CSS ",
+    href : "/form",
+      tags: ["TypeScript", "React", "Tailwind CSS", "Zod", "React Hook Form", "HTML5"], 
+      icon: "📃",
+    },
   ]
 
   const skills = [
