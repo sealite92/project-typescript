@@ -19,9 +19,17 @@ export const experienceSchema = z.object({
     isCurrentlyWorkingHere: z.boolean().optional(),
     location: z.string().min(2, "Location is a required field"),
     locationType: z.enum(["On-site", "Remote", "Hybrid"]).optional(),
- startDate: z.string("Start date is a required field"),
-    endDate: z.string().optional(),
-    description: z.string().max(500).optional()
+ startDate: z.string("Start date is a required field").transform((value) => {
+        const date = new Date(value);
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
+        return date.toLocaleDateString('en-US', options);
+    }),
+    endDate: z.string().transform((value) => {
+        const date = new Date(value);
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
+        return date.toLocaleDateString('en-US', options);
+    }).optional(),
+    description: z.string().max(100, "100 characters max exceeded").optional()
 })
 
 export type Experience = z.infer<typeof experienceSchema>
