@@ -56,8 +56,6 @@ const handleFormSubmit: SubmitHandler<FormFields> = (data) => {
       <option value="Full-time">Full-time</option>
       <option value="Part-time">Part-time</option>
       <option value="Self-employed">Contract</option>
-      <option value="Freelance">Contract</option>
-      <option value="Contract">Contract</option>
       <option value="Internship">Internship</option>
       <option value="Apperenticeship">Apperenticeship</option>
       <option value="Seasonal">Seasonal</option>
@@ -78,9 +76,10 @@ const handleFormSubmit: SubmitHandler<FormFields> = (data) => {
         {errors.startDate && <p className="text-red-500">{errors.startDate.message}</p>}
       
         <label>End Date*</label>
-        <input type="month" className="p-2 border-2 border-gray-500 rounded-md"
-         {...register("endDate")}  disabled={isCurrentlyWorkingHere}/>
+        <input type="month" className={`p-2 border-2  ${isCurrentlyWorkingHere? "bg-gray-300" : "bg-white"} border-gray-500 rounded-md`}
+         {...register("endDate")}  disabled={isCurrentlyWorkingHere} />
         {errors.endDate && <p className="text-red-500">{errors.endDate.message}</p>} 
+
     <label htmlFor="">Location*</label>
     <input type="text" className="p-2 border-2 border-gray-500 rounded-md" placeholder="Ex Lagos, Nigeria"
     {...register("location")}/>
