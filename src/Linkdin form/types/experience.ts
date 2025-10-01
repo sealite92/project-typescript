@@ -19,12 +19,12 @@ export const experienceSchema = z.object({
     isCurrentlyWorkingHere: z.boolean().optional(),
     location: z.string().min(2, "Location is a required field"),
     locationType: z.enum(["On-site", "Remote", "Hybrid"]).optional(),
- startDate: z.string("Start date is a required field").transform((value) => {
+ startDate: z.string().min(1, "Start date is a required field").transform((value) => {
         const date = new Date(value);
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
         return date.toLocaleDateString('en-US', options);
     }),
-    endDate: z.string().transform((value) => {
+    endDate: z.string().min(1, "End date is a required field").transform((value) => {
         const date = new Date(value);
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
         return date.toLocaleDateString('en-US', options);

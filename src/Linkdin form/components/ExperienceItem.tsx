@@ -16,7 +16,7 @@ export default function ExperienceItem({jobExperience}: ExperienceItemProps)  {
                 : ` - ${jobExperience.endDate}`}
             </p>
            <div className='flex gap-2'>
-             <p>{jobExperience.location}</p><span className='text-gray-400'> <span className="text-gray-400">• {jobExperience.locationType}</span>{jobExperience.locationType}</span>
+             <p>{jobExperience.location}</p><span className='text-gray-400'> <span className="text-gray-400">•</span>{jobExperience.locationType}</span>
             </div>
             <p>{jobExperience.description}</p>
           </div>
