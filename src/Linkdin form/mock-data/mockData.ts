@@ -9,8 +9,8 @@ export const sampleJobExperiences: Experience[] = [
     startDate: "June, 2022",
     location: "New York, NY",
     locationType: "Remote",
-    description: "Working on developing scalable web applications."
-
+    description: "Working on developing scalable web applications.",
+    endDate: ""
   },
   {
     title: "Frontend Developer",

@@ -14,7 +14,7 @@ function BackButton({ className = "" }: { className?: string }) {
     <div className={`z-10 px-4 pt-6 ${className}`}>
       <button
         onClick={() => window.history.back()}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border text-black hover:bg-slate-100 transition-all duration-200 backdrop-blur-sm"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border text-black hover:bg-slate-100 transition-all duration-200 backdrop-blur-sm cursor-pointer"
       >
         <ArrowLeft className="w-4 h-4" />
       </button>
@@ -63,8 +63,8 @@ export default function Form() {
         <ExperienceList experienceList={experienceList} />
 
         {showAddExperienceForm && (
-          <div className="fixed inset-0 bg-black/60 flex items-start justify-center pt-10 w-full h-full z-50">
-            <div className="bg-white rounded shadow-lg max-w-2xl w-full p-6">
+          <div className="fixed inset-0 lg:bg-black/60 md:bg-black/60 sm:bg-white flex items-start justify-center pt-10 w-full h-full z-50">
+            <div className="bg-white rounded shadow-lg max-w-2xl w-full h-full ">
               <AddExperienceForm onSubmit={onSubmit} cancel={onCancel} />
             </div>
           </div>

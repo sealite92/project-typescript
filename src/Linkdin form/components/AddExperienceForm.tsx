@@ -36,7 +36,7 @@ const handleFormSubmit: SubmitHandler<FormFields> = (data) => {
   return (
     
       <div className="bg-white rounded-lg shadow-lg  max-w-3xl h-[90vh] overflow-y-auto p-6 side-bar-hidden">
- <div className="flex justify-between border-b border-gray-500 bg-white sticky top-0 p-6 pt-0"><label className="text-2xl font-bold text-center">Add Experience</label>  <button className="font-semibold cursor-pointer" onClick={cancel}>close</button></div> 
+ <div className="flex justify-between border-b border-gray-500 bg-white p-6 pt-0"><label className="text-2xl font-bold text-center">Add Experience</label>  <button className="font-semibold cursor-pointer" onClick={cancel}>close</button></div> 
         <form className='flex flex-col gap-4 content-center justify-center p-6 bg-white' onSubmit={handleSubmit(handleFormSubmit)}>
     <p>* Indicates required fields</p>
     <label htmlFor="">Title*</label>  
@@ -98,7 +98,7 @@ const handleFormSubmit: SubmitHandler<FormFields> = (data) => {
     {...register("description")}/>
     {errors.description && <div className="text-red-500">{errors.description.message}</div>}
 
-   <div className="bg-white flex justify-between sticky barder-1 border-gray-500 z-50 bottom-0 p-4 w-full"><div></div><button  className='text-center rounded-md  w-20  bg-blue-400 hover:bg-blue-500 text-white font-semibold' type="submit">Save</button></div>
+   <div className="bg-white flex justify-between  barder-1 border-gray-500 z-50 bottom-0 p-4 w-full"><div></div><button  className='text-center rounded-md  w-20  bg-blue-400 hover:bg-blue-500 text-white font-semibold' type="submit">Save</button></div>
    </form>
       </div>
   )

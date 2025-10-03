@@ -28,8 +28,16 @@ export const experienceSchema = z.object({
         const date = new Date(value);
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
         return date.toLocaleDateString('en-US', options);
-    }).optional(),
+    }),
     description: z.string().max(100, "100 characters max exceeded").optional()
-})
+}).superRefine((data, ctx) => {
+  if (!data.isCurrentlyWorkingHere && !data.endDate) {
+    ctx.addIssue({
+      path: ["endDate"],
+      code: z.ZodIssueCode.custom,
+      message: "End date is required when not currently working here"
+    });
+  }
+});
 
 export type Experience = z.infer<typeof experienceSchema>

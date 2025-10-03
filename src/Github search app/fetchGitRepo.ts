@@ -19,7 +19,6 @@ export const usefetchRepo = (searchTerm: string, sort: Sortby, order: Order, per
         let query: string
 
         if (!searchTerm) {
-          // Fetch trending repositories from the last week
           const oneWeekAgo = new Date()
           oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
           const dateString = oneWeekAgo.toISOString().split("T")[0]
