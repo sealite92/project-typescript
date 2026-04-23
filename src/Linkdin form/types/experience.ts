@@ -30,14 +30,25 @@ export const experienceSchema = z.object({
         return date.toLocaleDateString('en-US', options);
     }),
     description: z.string().max(100, "100 characters max exceeded").optional()
-}).superRefine((data, ctx) => {
-  if (!data.isCurrentlyWorkingHere && !data.endDate) {
-    ctx.addIssue({
+}).refine(
+    (data) => data.isCurrentlyWorkingHere || !!data.endDate,
+    {
+      message: "End date is required if you are not currently working here",
       path: ["endDate"],
-      code: z.ZodIssueCode.custom,
-      message: "End date is required when not currently working here"
-    });
-  }
-});
+    }
+  )
+  // Rule 2: endDate must be after startDate
+  .refine(
+    (data) => {
+      if (!data.startDate || !data.endDate) return true; // skip check if one is missing
+      const start = new Date(data.startDate);
+      const end = new Date(data.endDate);
+      return end > start;
+    },
+    {
+      message: "End date must be after start date",
+      path: ["endDate"],
+    }
+  );
 
 export type Experience = z.infer<typeof experienceSchema>

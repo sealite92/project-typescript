@@ -16,7 +16,7 @@ type FormFields = z.infer<typeof experienceSchema>
 export default function AddExperienceForm({onSubmit, cancel}: AddExperienceFormProps) {
 
 
-    const {register, handleSubmit, setError, reset, watch, formState:{errors, isSubmitting}} = useForm<FormFields>({
+    const {register, handleSubmit, reset, watch, formState:{errors, isSubmitting}} = useForm<FormFields>({
         resolver: zodResolver(experienceSchema),
         defaultValues: {
             isCurrentlyWorkingHere: false
@@ -76,7 +76,7 @@ const handleFormSubmit: SubmitHandler<FormFields> = (data) => {
         {errors.startDate && <p className="text-red-500">{errors.startDate.message}</p>}
       
         <label>End Date*</label>
-        <input type="month" className={`p-2 border-2  ${isCurrentlyWorkingHere? "bg-gray-300" : "bg-white"} border-gray-500 rounded-md`}
+        <input type="month" className={`p-2 border-2  ${isCurrentlyWorkingHere? "bg-gray-300" : "bg-white"} ${isCurrentlyWorkingHere && "cursor-not-allowed"} border-gray-500 rounded-md`}
          {...register("endDate")}  disabled={isCurrentlyWorkingHere} />
         {errors.endDate && <p className="text-red-500">{errors.endDate.message}</p>} 
 

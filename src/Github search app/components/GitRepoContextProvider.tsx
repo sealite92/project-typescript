@@ -4,7 +4,7 @@ import type React from "react"
 
 import { createContext, useContext, useState } from "react"
 import type { Order, PerPage, Repository, Sortby } from "../types/gitRepoModelTypes"
-import { usefetchRepo } from "../fetchGitRepo"
+import { usefetchRepo } from "../useFetchGitRepo"
 
 interface RepoContextProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>

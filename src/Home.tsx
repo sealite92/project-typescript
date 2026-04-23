@@ -1,4 +1,4 @@
-"use client"
+
 import { Button } from "./components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card"
 import { Badge } from "./components/ui/badge"
@@ -34,7 +34,7 @@ function App() {
     {
       title: "Menu swift",
       description: "A group project from the HNG12 program. A modern restaurant menu app that allows you to generate a Qr code for your customers to make their orders in real time.",
-    externalUrl : "https://visit.menu/",
+    externalUrl : "https://usemenucard.com/",
       tags: ["TypeScript", "React", "Tailwind CSS", "GitHub API", "Search", "HTML5", "JavaScript", "Zustand for state management"],
       icon: "🍽️",
     },
