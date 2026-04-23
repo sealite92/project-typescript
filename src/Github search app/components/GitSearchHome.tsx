@@ -8,6 +8,7 @@ import Pagination from "@/components/Pagination"
 import { Github, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+
 export default function GitSearchHome() {
   return (
     <div className="min-h-screen min-w-screen bg-gray-900">

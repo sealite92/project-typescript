@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useEffect, useState } from "react"
 import type { Order, PerPage, Repository, Sortby } from "./types/gitRepoModelTypes"
